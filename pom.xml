@@ -11,13 +11,14 @@
     </parent>
 
     <groupId>io.github.helvalius</groupId>
-    <artifactId>spring-cloud-config-fortuneteller</artifactId>
+    <artifactId>spring-cloud-sample-random</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Fortune Teller Cloud Config Example</name>
+    <name>Spring Cloud Testing Environment</name>
 
     <modules>
-        <module>config-server</module>
+        <module>random-service</module>
+        <module>discovery</module>
     </modules>
 
 

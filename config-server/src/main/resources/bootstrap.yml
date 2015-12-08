@@ -1,7 +1,0 @@
----
-spring:
-  application:
-    name: fortune-config
-  profiles:
-    active: native
-
