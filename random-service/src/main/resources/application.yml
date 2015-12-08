@@ -1,6 +1,6 @@
 ---
 server:
-  port: ${Ra}
+  port: 8123
 
 spring:
   application:
