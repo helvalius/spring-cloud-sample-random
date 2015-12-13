@@ -1,6 +1,6 @@
 ---
 server:
-  port: 8123
+  port: 8234
 
 spring:
   application:
