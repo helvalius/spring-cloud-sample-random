@@ -2,30 +2,36 @@ package io.github.helvalius.fortune.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan
+@EnableAutoConfiguration
 @EnableEurekaClient
-@EnableHystrix
 @EnableFeignClients
 public class Application {
+    @Autowired
     private FeignFortune fortuneService;
 
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
+    public static void main(String[] args) throws InterruptedException {
+        ConfigurableApplicationContext ctx = SpringApplication.run(Application.class, args);
+
+
+        FeignFortune bean = ctx.getBean(FeignFortune.class);
+        System.out.println(bean.seed());
     }
 
+    public Application() {
+        //System.out.println(fortuneService.seed());
+    }
 
-    @Autowired
-    public Application(FeignFortune fortuneService) {
+    public void setFortuneService(FeignFortune fortuneService) {
         this.fortuneService = fortuneService;
-
-        System.out.println(fortuneService.seed());
     }
-
-
 }

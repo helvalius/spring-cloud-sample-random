@@ -13,6 +13,7 @@ public class FortuneService implements IFortuneService {
 
     @Override
     @HystrixCommand(fallbackMethod = "fixedNumber")
+    @RequestMapping(path = "/seed", method = RequestMethod.GET)
     public int seed(){
         return new Random().nextInt();
     }
