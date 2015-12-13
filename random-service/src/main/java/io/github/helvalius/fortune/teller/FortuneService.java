@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Random;
 
 @RestController
-public class FortuneService {
+public class FortuneService implements IFortuneService {
 
+    @Override
     @HystrixCommand(fallbackMethod = "fixedNumber")
-    @RequestMapping(path = "/seed", method= RequestMethod.GET)
     public int seed(){
         return new Random().nextInt();
     }
 
+    @Override
     @HystrixCommand(fallbackMethod = "fixedSubstraction")
     @RequestMapping(path = "/subtractor", method=RequestMethod.POST)
     public int subtractor(@RequestParam(required = false) Integer minuend, @RequestParam(required = false) Integer subtrahend){
